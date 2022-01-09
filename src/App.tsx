@@ -6,13 +6,15 @@ import Home from './Pages/Home';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/rawJson/:page/:id" element={<Details />} />
-      </Routes>
-    </BrowserRouter>
+    <div data-testid="app">
+      <BrowserRouter >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/rawJson" element={<Details />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
 
   );
 }

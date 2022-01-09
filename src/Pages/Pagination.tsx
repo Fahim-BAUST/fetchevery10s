@@ -8,7 +8,7 @@ interface Props {
     paginate: (number: number) => void
 }
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }: Props) => {
+const Pagination: React.FC<Props> = ({ postsPerPage, totalPosts, paginate }) => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -17,8 +17,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }: Props) => {
 
     return (
 
-
-        <Box style={{ marginInline: "15px", textAlign: "center", marginTop: 20, marginBottom: "50px" }}>
+        <Box data-testid="pagination" style={{ marginInline: "15px", textAlign: "center", marginTop: 20, marginBottom: "50px" }}>
             {pageNumbers.map(number => (
                 <Button key={number} variant="outlined" size="small" onClick={() => paginate(number)}>{number}</Button>
 

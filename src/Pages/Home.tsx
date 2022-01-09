@@ -3,18 +3,16 @@ import { Button, Container, LinearProgress, Paper, Table, TableBody, TableCell, 
 import Pagination from './Pagination';
 import { Link } from 'react-router-dom';
 
-interface AllPosts {
+export interface AllPosts {
     title: string,
     url: string,
     created_at: string,
-    author: string,
-    objectID: string
-
+    author: string
 }
 
 const Home = () => {
     const [posts, setPosts] = useState<AllPosts[]>([]);
-    const [holdPage, SetHoldPage] = useState<number>(0)
+
     const [loading, setLoading] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [postsPerPage] = useState<number>(20);
@@ -33,7 +31,6 @@ const Home = () => {
 
                     post.push(...data.hits)
                     setPosts(post)
-                    SetHoldPage(page)
 
                     setLoading(false);
                 })
@@ -53,8 +50,9 @@ const Home = () => {
     const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
 
+
     return (
-        <Container>
+        <Container data-testid="home">
             <Typography sx={{ mt: 2 }} align='center' variant="h4" gutterBottom component="div">All Post</Typography>
 
             {loading ? <LinearProgress color="secondary" /> : <TableContainer component={Paper}>
@@ -83,7 +81,7 @@ const Home = () => {
                                 <TableCell >{row.created_at}</TableCell>
                                 <TableCell >{row.author}</TableCell>
                                 <TableCell >
-                                    <Link to={`/rawJson/${holdPage}/${row.objectID}`}><Button size="small">click</Button></Link>
+                                    <Link to={`/rawJson`} state={{ row }}><Button size="small">click</Button></Link>
 
                                 </TableCell>
 
