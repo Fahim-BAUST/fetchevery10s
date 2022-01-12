@@ -1,4 +1,4 @@
-import { Card, CardContent, LinearProgress, Typography } from '@mui/material';
+import { LinearProgress } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
